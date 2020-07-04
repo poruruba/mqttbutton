@@ -179,8 +179,10 @@ void parseRequest(void){
   M5.dis.setBrightness(brightness);
   JsonArray array = json_request["btns"].as<JsonArray>();
   num_of_btns = array.size();
+  if( num_of_btns > NUM_OF_BTNS )
+    num_of_btns = NUM_OF_BTNS;
 
-  for( int i = 0 ; i < num_of_btns && i < NUM_OF_BTNS ; i++ ){
+  for( int i = 0 ; i < num_of_btns ; i++ ){
     uint32_t color;
     if( array[i]["fore"] ){
       color = array[i]["fore"];
