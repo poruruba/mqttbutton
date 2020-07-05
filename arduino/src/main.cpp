@@ -165,7 +165,10 @@ void setText(char ch, CRGB fore, CRGB back, uint8_t rotate = 0, bool invert = fa
 
 // 現在の表示ボタンインデックスに合わせて文字を表示
 void showButton(bool invert){
-  setText(btns[current_btn_index].ch, btns[current_btn_index].fore, btns[current_btn_index].back, btns[current_btn_index].rotate, invert);
+  if( current_btn_index < num_of_btns )
+    setText(btns[current_btn_index].ch, btns[current_btn_index].fore, btns[current_btn_index].back, btns[current_btn_index].rotate, invert);
+  else
+    setText(DEFAULT_CHAR, default_fore, default_back, DEFAULT_ROTATE, invert);
 }
 
 // MQTTで受信したボタン設定を解析し設定
